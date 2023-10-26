@@ -1,0 +1,33 @@
+pipeline:
+  identifier: Build_harness_1698339858434
+  name: Build harness
+  orgIdentifier: default
+  projectIdentifier: mphasis1
+  properties:
+    ci:
+      codebase:
+        build: <+input>
+        connectorRef: org.githubconnectorcorrect
+        repoName: harness
+  stages:
+    - stage:
+        identifier: build
+        name: build
+        spec:
+          cloneCodebase: true
+          execution:
+            steps:
+              - step:
+                  identifier: echo
+                  name: echo
+                  spec:
+                    command: echo hello world
+                  timeout: ""
+                  type: Run
+          platform:
+            arch: Amd64
+            os: Linux
+          runtime:
+            spec: {}
+            type: Cloud
+        type: CI
