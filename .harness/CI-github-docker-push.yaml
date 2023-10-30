@@ -1,0 +1,40 @@
+pipeline:
+  name: f1
+  identifier: f1
+  projectIdentifier: project1
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: org.githubconnector30102023
+        repoName: harness
+        build: <+input>
+  stages:
+    - stage:
+        name: build1
+        identifier: build1
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: org.dockerregistery
+                    repo: kharatramesh/mphasis
+                    tags:
+                      - image2
+                    dockerfile: Dockerfile
+  delegateSelectors:
+    - linux-arm64
